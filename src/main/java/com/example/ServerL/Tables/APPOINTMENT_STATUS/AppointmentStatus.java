@@ -11,6 +11,7 @@ public class AppointmentStatus {
     @Id
     @SequenceGenerator(name="resource_sequence",allocationSize = 1)
     @GeneratedValue(generator="resource_sequence",strategy = GenerationType.SEQUENCE)
+    private int idStatusAppointment;
     private int idAppointment;
     private int idStatus;
     private LocalDateTime dateTime;

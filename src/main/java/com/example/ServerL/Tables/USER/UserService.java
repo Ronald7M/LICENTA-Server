@@ -18,8 +18,19 @@ public class UserService {
         return userRepository.findAll();
     }
 
-  public  void  createUser(User user){
-        userRepository.save(user);
+  public  int  createUser(User user){
+        List<User> users =getUsers();
+      for (int i = 0; i < users.size(); i++) {
+          if(users.get(i).getEmail().equals(user.getEmail())){
+              return 1;
+          }
+          if(users.get(i).getUsername().equals(user.getUsername())){
+              return 2;
+          }
+
+      }
+      userRepository.save(user);
+      return 0;
     }
     public void updateUser(int id , User user){
         User find=userRepository.findById(id).orElseThrow(()->new IllegalStateException(String.format("User with id= %s doesn't exist", id)));
